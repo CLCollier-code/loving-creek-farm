@@ -1,0 +1,44 @@
+---
+import ProduceCard from "./ProduceCard.astro";
+interface ProduceItem {
+  name: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  season: "in-season" | "coming-soon" | "off-season";
+}
+
+interface Category {
+  heading: string;
+  items: ProduceItem[];
+}
+
+interface Props {
+  categories: Category[];
+}
+
+const { categories } = Astro.props;
+---
+
+<div class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-16">
+  {
+    categories.map((category) => (
+      <div>
+        <h2 class="font-serif text-3xl text-bark mb-8 pb-4 border-b border-stone-warm">
+          {category.heading}
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {category.items.map((item) => (
+            <ProduceCard
+              name={item.name}
+              description={item.description}
+              image={item.image}
+              imageAlt={item.imageAlt}
+              season={item.season}
+            />
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</div>

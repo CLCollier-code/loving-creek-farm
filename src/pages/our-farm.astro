@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionIntro from "../components/blocks/SectionIntro.astro";
+import TwoColumn from "../components/blocks/TwoColumn.astro";
+import RichText from "../components/blocks/RichText.astro";
+import CallToAction from "../components/blocks/CallToAction.astro";
+---
+
+<BaseLayout title="Our Farm | Loving Creek Farm">
+  <SectionIntro
+    eyebrow="Our Farm"
+    heading="A little patch of Evington."
+    body="We're a small, diverse farm in the piedmont hills of central Virginia — growing food the way it ought to be grown."
+  />
+  <TwoColumn
+    image="/images/hero-1.jpg"
+    imageAlt="The farm at Loving Creek"
+    eyebrow="How it started"
+    heading="From a backyard to something bigger."
+    body="What began as a kitchen garden grew season by season into a small working farm. We didn't plan it — we just kept planting, and the land kept giving."
+  />
+  <RichText
+    content="
+      <h3>How we grow</h3>
+      <p>We don't take shortcuts. Everything is tended by hand, grown in healthy soil, and harvested at the right time. We're not certified organic, but we farm with care — no unnecessary sprays, no rushed timelines.</p>
+      <h3>What drives us</h3>
+      <p>We believe good food should come from people you know, grown on land you can visit. Loving Creek Farm is our attempt to offer that to our neighbors in Campbell County and beyond.</p>
+    "
+  />
+  <TwoColumn
+    image="/images/hero-2.jpg"
+    imageAlt="Tending the fields"
+    eyebrow="The land"
+    heading="Campbell County, Virginia."
+    body="We're rooted in the rolling hills between Lynchburg and the Blue Ridge. The soil here is honest — it rewards patience and punishes shortcuts. We've learned to work with it rather than against it."
+    reverse={true}
+  />
+  <CallToAction
+    eyebrow="Come find us"
+    heading="We'd love to connect."
+    body="Have questions about the farm or what we grow? Drop us a line."
+    primaryCta={{ label: "Get in touch", href: "/contact" }}
+    secondaryCta={{ label: "See what we grow", href: "/what-we-grow" }}
+  />
+</BaseLayout>

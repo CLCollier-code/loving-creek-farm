@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionIntro from "../components/blocks/SectionIntro.astro";
+import ProduceGrid from "../components/produce/ProduceGrid.astro";
+import CallToAction from "../components/blocks/CallToAction.astro";
+
+const categories = [
+  {
+    heading: "Vegetables",
+    items: [
+      {
+        name: "Tomatoes",
+        description:
+          "Heirloom and hybrid varieties, grown for flavour first. Available in a range of colours and sizes through summer.",
+        image: "/images/hero-1.jpg",
+        imageAlt: "Fresh tomatoes",
+        season: "in-season" as const,
+      },
+      {
+        name: "Sweet Corn",
+        description:
+          "Classic summer corn, picked at peak sweetness. Nothing tastes more like August in Virginia.",
+        image: "/images/hero-2.jpg",
+        imageAlt: "Sweet corn",
+        season: "coming-soon" as const,
+      },
+      {
+        name: "Greens & Lettuces",
+        description:
+          "A rotating mix of salad greens, kale, and cooking greens — best in spring and fall.",
+        image: "/images/hero-3.jpg",
+        imageAlt: "Fresh greens",
+        season: "off-season" as const,
+      },
+    ],
+  },
+  {
+    heading: "Fruit",
+    items: [
+      {
+        name: "Strawberries",
+        description:
+          "Sweet, sun-ripened strawberries — a brief and wonderful early summer treat.",
+        image: "/images/hero-1.jpg",
+        imageAlt: "Fresh strawberries",
+        season: "off-season" as const,
+      },
+      {
+        name: "Apples",
+        description:
+          "Several varieties from our small orchard, harvested through the fall months.",
+        image: "/images/hero-2.jpg",
+        imageAlt: "Apples from the orchard",
+        season: "coming-soon" as const,
+      },
+      {
+        name: "Peaches",
+        description:
+          "Nothing beats a Virginia peach in July. We grow a small crop — they go fast.",
+        image: "/images/hero-3.jpg",
+        imageAlt: "Fresh peaches",
+        season: "coming-soon" as const,
+      },
+    ],
+  },
+  {
+    heading: "Specialty",
+    items: [
+      {
+        name: "Fresh Cut Flowers",
+        description:
+          "Seasonal bouquets and cut stems — sunflowers, zinnias, and whatever's blooming.",
+        image: "/images/hero-1.jpg",
+        imageAlt: "Fresh cut flowers",
+        season: "in-season" as const,
+      },
+      {
+        name: "Herbs",
+        description:
+          "Culinary herbs grown for home cooks — basil, rosemary, thyme, and more.",
+        image: "/images/hero-2.jpg",
+        imageAlt: "Fresh herbs",
+        season: "in-season" as const,
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title="What We Grow | Loving Creek Farm">
+  <SectionIntro
+    eyebrow="What We Grow"
+    heading="Grown in season, offered with care."
+    body="We grow a diverse mix of vegetables, fruit, and specialty crops — all tended by hand on our small farm in Evington. Check back as the seasons change."
+  />
+  <ProduceGrid categories={categories} />
+  <CallToAction
+    eyebrow="Interested?"
+    heading="Want to know what's available?"
+    body="Reach out and we'll let you know what's ready and how to get it."
+    primaryCta={{ label: "Get in touch", href: "/contact" }}
+  />
+</BaseLayout>

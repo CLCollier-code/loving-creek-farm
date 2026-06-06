@@ -1,0 +1,51 @@
+---
+interface Props {
+  mapEmbedUrl: string;
+}
+
+const { mapEmbedUrl } = Astro.props;
+---
+
+<div class="flex flex-col gap-6">
+  <div>
+    <h3 class="font-serif text-xl text-bark mb-3">Visiting the Farm</h3>
+    <p class="text-bark/70 text-sm leading-relaxed">
+      We're located in Evington, Virginia — in the heart of Campbell County. We
+      welcome visitors <span class="font-medium text-bark"
+        >by appointment only</span
+      >. Reach out through the form and we'll get back to you to arrange a time.
+    </p>
+  </div>
+
+  <div>
+    <h3 class="font-serif text-xl text-bark mb-3">General Hours</h3>
+    <ul class="text-sm text-bark/70 flex flex-col gap-1">
+      <li class="flex justify-between border-b border-stone-warm py-2">
+        <span>Tuesday – Friday</span>
+        <span class="font-medium text-bark">By appointment</span>
+      </li>
+      <li class="flex justify-between border-b border-stone-warm py-2">
+        <span>Saturday</span>
+        <span class="font-medium text-bark">By appointment</span>
+      </li>
+      <li class="flex justify-between py-2">
+        <span>Sunday – Monday</span>
+        <span class="font-medium text-bark">Closed</span>
+      </li>
+    </ul>
+  </div>
+
+  <div
+    class="relative rounded-lg aspect-[4/3]"
+    style="overflow:hidden; border-radius:0.5rem;"
+  >
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25412.70436673243!2d-79.31006829374273!3d37.23375321609131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b2c955927b447d%3A0x4f360498994e0480!2sEvington%2C%20VA%2024550!5e0!3m2!1sen!2sus!4v1780782412319!5m2!1sen!2sus"
+      width="600"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>

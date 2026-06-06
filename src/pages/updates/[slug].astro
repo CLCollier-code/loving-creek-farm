@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RichText from "../../components/blocks/RichText.astro";
+import { getCollection, render } from "astro:content";
+
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post: CollectionEntry<"blog">) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post }: { post: CollectionEntry<"blog"> } = Astro.props;
+
+const { Content } = await render(post);
+
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+}).format(post.data.date);
+---
+
+<BaseLayout title={`${post.data.title} | Loving Creek Farm`}>
+  <div class="max-w-3xl mx-auto px-6 pt-16 pb-8">
+    <a
+      href="/updates"
+      class="inline-flex items-center gap-2 text-sm text-bark/50 hover:text-moss transition-colors mb-8 block"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M15 19l-7-7 7-7"></path>
+      </svg>
+      Back to Updates
+    </a>
+    <span
+      class="text-xs uppercase tracking-widest text-harvest font-medium block mt-8"
+    >
+      {formattedDate}
+    </span>
+    <h1
+      class="font-serif text-4xl md:text-5xl text-bark mt-4 mb-6 leading-snug"
+    >
+      {post.data.title}
+    </h1>
+    {
+      post.data.image && (
+        <img
+          src={post.data.image}
+          alt={post.data.imageAlt || ""}
+          class="w-full rounded-lg aspect-[16/9] object-cover mb-10"
+        />
+      )
+    }
+  </div>
+  <div class="max-w-3xl mx-auto px-6 pb-16">
+    <Content />
+  </div>
+</BaseLayout>

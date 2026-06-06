@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionIntro from "../../components/blocks/SectionIntro.astro";
+import BlogPostCard from "../../components/blog/BlogPostCard.astro";
+import { getCollection } from "astro:content";
+
+import type { CollectionEntry } from "astro:content";
+
+const allPosts = await getCollection("blog");
+const posts = allPosts.sort(
+  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+    b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout title="Updates | Loving Creek Farm">
+  <SectionIntro
+    eyebrow="Updates"
+    heading="News from the farm."
+    body="Seasonal updates, harvest notes, and whatever's happening at Loving Creek — straight from us to you."
+  />
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    {
+      posts.length === 0 && (
+        <p class="text-bark/60 text-center py-12">
+          No updates yet — check back soon.
+        </p>
+      )
+    }
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        posts.map((post) => (
+          <BlogPostCard
+            title={post.data.title}
+            date={post.data.date}
+            excerpt={post.data.excerpt}
+            image={post.data.image}
+            imageAlt={post.data.imageAlt}
+            slug={post.id}
+          />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

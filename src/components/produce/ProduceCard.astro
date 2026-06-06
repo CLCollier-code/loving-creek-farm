@@ -1,0 +1,38 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  season: "in-season" | "coming-soon" | "off-season";
+}
+
+const { name, description, image, imageAlt, season } = Astro.props;
+
+const badge = {
+  "in-season": { label: "In Season", class: "bg-moss text-cream" },
+  "coming-soon": { label: "Coming Soon", class: "bg-harvest text-cream" },
+  "off-season": { label: "Off Season", class: "bg-stone-warm text-bark/60" },
+}[season];
+---
+
+<div
+  class="flex flex-col rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow"
+>
+  <div class="relative overflow-hidden aspect-square">
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+    />
+    <span
+      class={`absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded-full ${badge.class}`}
+    >
+      {badge.label}
+    </span>
+  </div>
+  <div class="p-5 flex flex-col gap-2 flex-1">
+    <h3 class="font-serif text-xl text-bark">{name}</h3>
+    <p class="text-bark/70 text-sm leading-relaxed">{description}</p>
+  </div>
+</div>

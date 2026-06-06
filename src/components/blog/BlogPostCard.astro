@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  date: Date;
+  excerpt: string;
+  image?: string;
+  imageAlt?: string;
+  slug: string;
+}
+
+const { title, date, excerpt, image, imageAlt, slug } = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+}).format(date);
+---
+
+<a
+  href={`/updates/${slug}`}
+  class="group flex flex-col rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow"
+>
+  {
+    image && (
+      <div class="overflow-hidden aspect-[16/9]">
+        <img
+          src={image}
+          alt={imageAlt || ""}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+        />
+      </div>
+    )
+  }
+  <div class="p-6 flex flex-col gap-3 flex-1">
+    <span class="text-xs uppercase tracking-widest text-harvest font-medium">
+      {formattedDate}
+    </span>
+    <h3
+      class="font-serif text-xl text-bark group-hover:text-moss transition-colors leading-snug"
+    >
+      {title}
+    </h3>
+    <p class="text-bark/70 text-sm leading-relaxed flex-1">{excerpt}</p>
+    <span class="text-sm font-medium text-moss mt-2">Read more →</span>
+  </div>
+</a>

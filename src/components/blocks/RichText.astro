@@ -1,0 +1,24 @@
+---
+interface Props {
+  content: string;
+  align?: "left" | "center";
+}
+
+const { content, align = "left" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "max-w-2xl px-6 py-8",
+    align === "center" ? "mx-auto text-center" : "mx-auto",
+  ]}
+>
+  <div
+    class="prose prose-stone prose-lg max-w-none
+    prose-headings:font-serif prose-headings:text-bark
+    prose-p:text-bark/70 prose-p:leading-relaxed
+    prose-a:text-moss prose-a:no-underline hover:prose-a:underline
+    prose-strong:text-bark"
+    set:html={content}
+  />
+</div>
