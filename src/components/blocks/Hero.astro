@@ -1,0 +1,159 @@
+---
+interface Props {
+  tagline?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  images?: string[];
+}
+
+const {
+  tagline = "Grown with care in Evington, Virginia.",
+  primaryCta,
+  secondaryCta,
+  images = ["/images/hero-1.jpg", "/images/hero-2.jpg", "/images/hero-3.jpg"],
+} = Astro.props;
+---
+
+<section class="relative h-screen w-full overflow-hidden">
+  <!-- Slides -->
+  {
+    images.map((src, i) => (
+      <div
+        class="carousel-slide absolute inset-0 transition-opacity duration-1000"
+        class:list={[i === 0 ? "opacity-100" : "opacity-0"]}
+        data-index={i}
+      >
+        <img
+          src={src}
+          alt=""
+          class="w-full h-full object-cover object-center"
+        />
+      </div>
+    ))
+  }
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-bark/40"></div>
+
+  <!-- Text + CTAs -->
+  <div
+    class="absolute inset-0 flex flex-col items-center justify-center text-center px-6 gap-6"
+  >
+    <h1
+      class="hero-text font-serif text-5xl md:text-7xl text-cream opacity-0 translate-y-2 transition-all duration-700"
+    >
+      Loving Creek Farm
+    </h1>
+    <p
+      class="hero-text font-sans text-lg md:text-xl text-cream/80 opacity-0 translate-y-2 transition-all duration-700 delay-150 max-w-md"
+    >
+      {tagline}
+    </p>
+    <div
+      class="hero-text flex flex-col sm:flex-row gap-4 mt-2 opacity-0 translate-y-2 transition-all duration-700 delay-300"
+    >
+      {
+        primaryCta && (
+          <a
+            href={primaryCta.href}
+            class="text-sm font-medium text-cream border border-cream/40 rounded-lg px-6 py-3 hover:bg-cream/10 transition-colors"
+          >
+            {primaryCta.label}
+          </a>
+        )
+      }
+      {
+        secondaryCta && (
+          <a
+            href={secondaryCta.href}
+            class="text-sm font-medium text-cream/70 hover:text-cream transition-colors px-6 py-3"
+          >
+            {secondaryCta.label}
+          </a>
+        )
+      }
+    </div>
+  </div>
+  <!-- Arrows -->
+  <button
+    id="prev-slide"
+    aria-label="Previous slide"
+    class="absolute left-4 top-1/2 -translate-y-1/2 text-cream/60 hover:text-cream transition-colors p-2"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-8 h-8"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </button>
+  <button
+    id="next-slide"
+    aria-label="Next slide"
+    class="absolute right-4 top-1/2 -translate-y-1/2 text-cream/60 hover:text-cream transition-colors p-2"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-8 h-8"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+</section>
+
+<script>
+  const slides = document.querySelectorAll<HTMLElement>(".carousel-slide");
+  const heroText = document.querySelectorAll<HTMLElement>(".hero-text");
+  let current = 0;
+  let timer: ReturnType<typeof setInterval>;
+
+  function goTo(index: number) {
+    slides[current].classList.remove("opacity-100");
+    slides[current].classList.add("opacity-0");
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.remove("opacity-0");
+    slides[current].classList.add("opacity-100");
+  }
+
+  function startTimer() {
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    startTimer();
+  }
+
+  // Fade in text on load
+  window.addEventListener("load", () => {
+    heroText.forEach((el) => {
+      el.classList.remove("opacity-0", "translate-y-2");
+    });
+  });
+
+  document.getElementById("prev-slide")?.addEventListener("click", () => {
+    goTo(current - 1);
+    resetTimer();
+  });
+
+  document.getElementById("next-slide")?.addEventListener("click", () => {
+    goTo(current + 1);
+    resetTimer();
+  });
+
+  startTimer();
+</script>

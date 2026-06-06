@@ -1,17 +1,50 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/blocks/Hero.astro";
+import SectionIntro from "../components/blocks/SectionIntro.astro";
+import TwoColumn from "../components/blocks/TwoColumn.astro";
+import FullWidthImage from "../components/blocks/FullWidthImage.astro";
+import CallToAction from "../components/blocks/CallToAction.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home | Loving Creek Farm">
+  <Hero
+    tagline="Grown with care in Evington, Virginia."
+    primaryCta={{ label: "What We Grow", href: "/what-we-grow" }}
+    secondaryCta={{ label: "Get in touch", href: "/contact" }}
+  />
+  <SectionIntro
+    eyebrow="Welcome"
+    heading="Small farm, honest work."
+    body="We're a family farm tucked into the hills of Evington, Virginia. We grow vegetables, fruit, and a little bit of everything — tended by hand, harvested in season, and offered with care."
+  />
+  <TwoColumn
+    image="/images/hero-2.jpg"
+    imageAlt="Fields at Loving Creek Farm"
+    eyebrow="Our story"
+    heading="Rooted in this land."
+    body="What started as a kitchen garden has grown into something we're proud to share with our community. Every season brings something new — and we're just getting started."
+    cta={{ label: "Meet the farm", href: "/our-farm" }}
+  />
+  <FullWidthImage
+    image="/images/hero-3.jpg"
+    imageAlt="Loving Creek Farm landscape"
+    height="md"
+  />
+  <TwoColumn
+    image="/images/hero-3.jpg"
+    imageAlt="Fresh produce from Loving Creek Farm"
+    eyebrow="What we grow"
+    heading="From the ground to your table."
+    body="Vegetables, fruit trees, herbs, and specialty crops — grown without shortcuts, harvested at their peak, and available when the season is right."
+    cta={{ label: "See what's growing", href: "/what-we-grow" }}
+    reverse={true}
+  />
+  <CallToAction
+    eyebrow="Come say hello"
+    heading="Interested in what we grow?"
+    body="We'd love to hear from you — whether you have questions, want to know what's in season, or just want to connect."
+    primaryCta={{ label: "Get in touch", href: "/contact" }}
+    secondaryCta={{ label: "See what's growing", href: "/what-we-grow" }}
+  />
+</BaseLayout>

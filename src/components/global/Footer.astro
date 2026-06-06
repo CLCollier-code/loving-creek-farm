@@ -1,0 +1,70 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-bark text-cream/80 mt-auto">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-cream/10"
+    >
+      <!-- Brand -->
+      <div class="flex flex-col gap-3">
+        <span class="font-serif text-xl text-cream">Loving Creek Farm</span>
+        <p class="text-sm leading-relaxed">
+          A small family farm in Evington, Virginia — growing good things with
+          care.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div class="flex flex-col gap-3">
+        <span
+          class="text-xs uppercase tracking-widest text-cream/50 font-medium"
+          >Explore</span
+        >
+        <nav class="flex flex-col gap-2">
+          <a href="/" class="text-sm hover:text-cream transition-colors">Home</a
+          >
+          <a href="/our-farm" class="text-sm hover:text-cream transition-colors"
+            >Our Farm</a
+          >
+          <a
+            href="/what-we-grow"
+            class="text-sm hover:text-cream transition-colors">What We Grow</a
+          >
+          <a href="/updates" class="text-sm hover:text-cream transition-colors"
+            >Updates</a
+          >
+          <a href="/contact" class="text-sm hover:text-cream transition-colors"
+            >Contact</a
+          >
+        </nav>
+      </div>
+
+      <!-- Contact nudge -->
+      <div class="flex flex-col gap-3">
+        <span
+          class="text-xs uppercase tracking-widest text-cream/50 font-medium"
+          >Get in touch</span
+        >
+        <p class="text-sm leading-relaxed">
+          Interested in what we grow? We'd love to hear from you.
+        </p>
+        <a
+          href="/contact"
+          class="inline-block mt-1 text-sm font-medium text-cream border border-cream/30 rounded-lg px-4 py-2 hover:bg-cream/10 transition-colors w-fit"
+        >
+          Send us a message
+        </a>
+      </div>
+
+      <div
+        class="pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-cream/40"
+      >
+        <span>&copy; {currentYear} Loving Creek Farm. All rights reserved.</span
+        >
+        <span>Evington, Virginia</span>
+      </div>
+    </div>
+  </div>
+</footer>
