@@ -1,7 +1,7 @@
 ---
 title: "Meet the Founders"
 date: 2026-06-01
-excerpt: "Hi, I'm Matt Jones, and my journey has been anything but conventional."
+excerpt: "Hi, I'm Matt Jones, and my journey to where I am today has been anything but conventional..."
 image: "/images/matt.jpg"
 imageAlt: "Fields at Loving Creek Farm"
 ---

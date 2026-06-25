@@ -1,7 +1,7 @@
 ---
 title: "Meet the Founders"
 date: 2026-06-01
-excerpt: "Hi, I'm Zach Hughes, and my journey to farming has been anything but traditional"
+excerpt: "Hi, I'm Zach Hughes, and my journey to farming has been anything but traditional..."
 image: "/images/zach.jpg"
 imageAlt: "Fields at Loving Creek Farm"
 ---
